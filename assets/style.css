@@ -160,12 +160,23 @@ h1 > img {
 
 #result-modal {
   font-size: clamp(1rem, 0.5rem + 2vmin, 1.5rem);
+  color: #664620;
+}
+
+#result-modal .modal-header {
+  min-height: 2em;
+  justify-content: center;
+}
+
+#result-modal .btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 #result-modal .modal-body {
   display: grid;
   justify-items: center;
-  color: #664620;
 }
 
 #result-modal .modal-title {
@@ -184,11 +195,4 @@ h1 > img {
 
 #result-modal .btn {
   margin-top: 2em;
-}
-
-#result-modal .division-indicator {
-  position: absolute;
-  bottom: 0.25em;
-  left: 0.25em;
-  font-size: 0.5em;
 }

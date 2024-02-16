@@ -48,9 +48,9 @@
       rotationSpeedMax: 600,
       rotationResistance: -60,
       onRest: function (ev) {
+        $("#result-modal .division-indicator").text(division);
         $("#result-modal .modal-title").text(`Congratulations${name ? ", " + name : ""}!`);
         $("#result-modal .prize-message").text(wheelItems[ev.currentIndex].label);
-        $("#result-modal .division-indicator").text(division);
         $("#result-modal").modal("show");
       },
     });
