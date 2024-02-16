@@ -4,7 +4,7 @@
 
   // retrieve saved name
 
-  let name = localStorage.getItem("name") || "";
+  let name = sessionStorage.getItem("name") || "";
   $("#input-name").val(name);
 
   // initialise wheel
@@ -15,7 +15,7 @@
     $("#wheel-wrapper").removeClass("d-none");
 
     name = $("#input-name").val();
-    localStorage.setItem("name", name);
+    sessionStorage.setItem("name", name);
 
     const wheelItems = [
       { label: "A" },
