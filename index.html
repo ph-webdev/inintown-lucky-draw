@@ -25,6 +25,13 @@
 <div id="input-wrapper">
   <label for="input-name" class="form-label">請輸入你的名字</label>
   <input type="text" placeholder="名字" autocomplete="off" id="input-name" class="form-control">
+  <label for="input-division" class="form-label">請選擇你的分校</label>
+  <select id="input-division" class="form-select">
+    <option value="" selected disabled>---</option>
+    <option value="TK">TK</option>
+    <option value="CW">CW</option>
+    <option value="CWB">CWB</option>
+  </select>
   <button type="button" id="btn-start" class="btn btn-primary">下一步 <i class="bi bi-arrow-right"></i></button>
 </div>
 
@@ -43,6 +50,7 @@
         <p class="modal-message">恭喜你已中獎！</p>
         <p class="prize-message modal-message">_</p>
         <button type="button" id="btn-reload" class="btn btn-primary">回到主頁</button>
+        <span class="division-indicator">_</span>
       </div>
     </div>
   </div>

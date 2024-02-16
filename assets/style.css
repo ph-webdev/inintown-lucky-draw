@@ -38,8 +38,10 @@ img, canvas {
   font-weight: 800;
 }
 
-.form-control {
-  padding: 0.75em 1.5em;
+.form-control, .form-select {
+  height: 2.5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
   border: none;
   border-radius: 0.375em;
   font-size: 1em;
@@ -163,6 +165,7 @@ h1 > img {
 #result-modal .modal-body {
   display: grid;
   justify-items: center;
+  color: #664620;
 }
 
 #result-modal .modal-title {
@@ -175,11 +178,17 @@ h1 > img {
 
 #result-modal .modal-message {
   margin-bottom: 0.25em;
-  color: #664620;
   font-size: 2em;
   font-weight: 600;
 }
 
 #result-modal .btn {
   margin-top: 2em;
+}
+
+#result-modal .division-indicator {
+  position: absolute;
+  bottom: 0.25em;
+  left: 0.25em;
+  font-size: 0.5em;
 }
