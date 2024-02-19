@@ -88,8 +88,6 @@ button {
 }
 
 .modal {
-  --bs-modal-header-padding: 1em;
-  --bs-modal-footer-padding: 1em;
   --bs-modal-margin: 2em;
   --bs-modal-border-width: 0;
   --bs-modal-header-border-width: 0;
@@ -98,6 +96,10 @@ button {
   color: #664620;
   font-size: clamp(1rem, 0.5rem + 2vmin, 1.5rem);
   text-align: center;
+}
+
+.modal-header {
+  padding: 1em;
 }
 
 .modal-header > button {
@@ -132,6 +134,10 @@ button {
 
 .modal-body .btn {
   margin-top: 2em;
+}
+
+.modal-footer {
+  padding: 1em;
 }
 
 /* GLOBAL - End */
