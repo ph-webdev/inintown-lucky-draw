@@ -1,41 +1,68 @@
 "use strict";
 
-(() => {
+$(document).ready(function () {
+
+  // set wheel items
+
+  const wheelItems = [
+    { label: "98折" },
+    { label: "95折" },
+    { label: "90折" },
+    { label: "80折" },
+    { label: "文件夾" },
+    { label: "間尺" },
+  ];
+
+  // if already drawn, stop from drawing again
+
+  if (localStorage.getItem("inintown-lucky-draw-result")) {
+    const { name, phone, division, prizeIndex } = JSON.parse(localStorage.getItem("inintown-lucky-draw-result"));
+    $("#result-modal .identity-indicator").text(`${phone} (${division})`);
+    $("#result-modal .modal-title").text(`Congratulations, ${name}!`);
+    $("#result-modal .prize-message").text(wheelItems[prizeIndex].label);
+    $("#result-modal").modal("show");
+  }
 
   // initialise wheel
 
   function initWheel() {
-    if (!$("#input-division").val()) return;
-
-    const name = $("#input-name").val();
-    const division = $("#input-division").val()
-
-    $("h1").addClass("in-game");
-    $("#input-wrapper").addClass("d-none");
-    $("#wheel-wrapper").removeClass("d-none");
-
-    let wheelItems;
-    if (division === "CWB") {
-      wheelItems = [
-        { label: "HKD 1,000", weight: 30 },
-        { label: "HKD 500", weight: 14 },
-        { label: "HKD 200", weight: 14 },
-        { label: "HKD 100", weight: 14 },
-        { label: "圖書", weight: 14 },
-        { label: "文具", weight: 14 },
-      ];
-    } else {
-      wheelItems = [
-        { label: "HKD 1,000", weight: 10 },
-        { label: "HKD 500", weight: 18 },
-        { label: "HKD 200", weight: 18 },
-        { label: "HKD 100", weight: 18 },
-        { label: "圖書", weight: 18 },
-        { label: "文具", weight: 18 },
-      ];
+    // return if input is invalid
+    if (!$("#input-form")[0].reportValidity()) {
+      $("#reject-modal .reject-message").text("請輸入你的個人資料");
+      $("#reject-modal").modal("show");
+      return;
     }
 
-    const wheel = new spinWheel.Wheel(document.querySelector("#wheel-wrapper"), {
+    // record inputs
+    const name = $("#input-name").val();
+    const phone = $("#input-phone").val();
+    const division = $("#input-division").val();
+
+    // predetermine prize
+    let prizeIndex;
+    if (division === "CWB") {
+      const random = Math.random();
+      if (random < 0.05) { prizeIndex = 0; }
+      else if (random < 0.15) { prizeIndex = 1; }
+      else if (random < 0.45) { prizeIndex = 2; }
+      else if (random < 0.95) { prizeIndex = 3; }
+      else if (random < 0.97) { prizeIndex = 4; }
+      else { prizeIndex = 5; }
+    } else {
+      const random = Math.random();
+      if (random < 0.50) { prizeIndex = 0; }
+      else if (random < 0.80) { prizeIndex = 1; }
+      else if (random < 0.90) { prizeIndex = 2; }
+      else if (random < 0.95) { prizeIndex = 3; }
+      else if (random < 0.97) { prizeIndex = 4; }
+      else { prizeIndex = 5; }
+    }
+
+    // show wheel
+    $("h1").addClass("in-game");
+    $("#input-form").addClass("d-none");
+    $("#wheel-wrapper").removeClass("d-none");
+    const wheel = new spinWheel.Wheel(document.querySelector("#wheel"), {
       items: wheelItems,
       itemLabelColors: ["#664620"],
       itemLabelStrokeColor: "#664620",
@@ -45,18 +72,30 @@
       itemBackgroundColors: ["#eb3f1f", "#ffffff"],
       lineWidth: 0,
       overlayImage: "assets/images/wheel-overlay.svg",
-      rotationSpeedMax: 600,
-      rotationResistance: -60,
-      onRest: function (ev) {
-        $("#result-modal .division-indicator").text(division);
-        $("#result-modal .modal-title").text(`Congratulations${name ? ", " + name : ""}!`);
-        $("#result-modal .prize-message").text(wheelItems[ev.currentIndex].label);
+      isInteractive: false,
+      onRest: function () {
+        $("#result-modal .identity-indicator").text(`${phone} (${division})`);
+        $("#result-modal .modal-title").text(`Congratulations, ${name}!`);
+        $("#result-modal .prize-message").text(wheelItems[prizeIndex].label);
         $("#result-modal").modal("show");
       },
     });
+    $("#btn-spin").on("click", function () {
+      if (wheel.rotationSpeed === 0) {
+        wheel.spinToItem(prizeIndex, 6000, false, 12);
+        localStorage.setItem("inintown-lucky-draw-result", JSON.stringify({
+          name: name,
+          phone: phone,
+          division: division,
+          prizeIndex: prizeIndex,
+        }));
+      }
+    });
   }
 
-  $("#btn-start").on("click", initWheel);
-  $("#btn-reload").on("click", location.reload.bind(location));
+  // add event listeners to buttons
 
-})();
+  $("#btn-start").on("click", initWheel);
+  $(".btn-reload").on("click", location.reload.bind(location));
+
+});

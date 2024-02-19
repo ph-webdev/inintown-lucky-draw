@@ -22,35 +22,59 @@
 <img src="./assets/images/bg-lion.svg" class="bg-lion">
 <h1><img src="./assets/images/title-banner.svg" alt="InInTown 新年大抽獎"></h1>
 
-<div id="input-wrapper">
+<form action="javascript:void(0);" autocomplete="off" id="input-form">
   <label for="input-name" class="form-label">請輸入你的名字</label>
-  <input type="text" placeholder="名字" autocomplete="off" id="input-name" class="form-control">
+  <input type="text" required placeholder="名字" id="input-name" class="form-control">
+  <label for="input-phone" class="form-label">請輸入你的電話</label>
+  <input type="tel" required pattern="\d{8}" placeholder="########" id="input-phone" class="form-control">
   <label for="input-division" class="form-label">請選擇你的分校</label>
-  <select id="input-division" class="form-select">
+  <select required id="input-division" class="form-select">
     <option value="" selected disabled>---</option>
     <option value="TK">TK</option>
     <option value="CW">CW</option>
     <option value="CWB">CWB</option>
   </select>
   <button type="button" id="btn-start" class="btn btn-primary">下一步 <i class="bi bi-arrow-right"></i></button>
-</div>
+</form>
 
-<div id="wheel-wrapper" class="d-none"></div>
+<div id="wheel-wrapper" class="d-none">
+  <div id="wheel"></div>
+  <button type="button" id="btn-spin" class="btn btn-primary">Spin!</button>
+</div>
 
 <!-- modals -->
 
-<div id="result-modal" class="modal fade" tabindex="-1" aria-hidden="true">
+<div id="reject-modal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <span class="division-indicator">_</span>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x"></i></button>
+        <button type="button" data-bs-dismiss="modal"><i class="bi bi-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <h2 class="modal-title">Message</h2>
+        <p class="reject-message modal-message">_</p>
+        <button type="button" data-bs-dismiss="modal" class="btn btn-primary">返回</button>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
+
+<div id="result-modal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="identity-indicator">_ (_)</span>
+        <button type="button" class="btn-reload"><i class="bi bi-x"></i></button>
       </div>
       <div class="modal-body">
         <h2 class="modal-title">Congratulations, _!</h2>
         <p class="modal-message">恭喜你已中獎！</p>
         <p class="prize-message modal-message">_</p>
-        <button type="button" id="btn-reload" class="btn btn-primary">回到主頁</button>
+        <button type="button" class="btn-reload btn btn-primary">回到主頁</button>
+      </div>
+      <div class="modal-footer">
+        <p>請保存螢幕截圖，並展示予 InInTown 同事以兌換獎品</p>
       </div>
     </div>
   </div>

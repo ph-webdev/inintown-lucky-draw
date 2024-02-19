@@ -32,6 +32,15 @@ img, canvas {
   max-width: 100%;
 }
 
+button {
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+}
+
 .form-label {
   margin-bottom: 0;
   font-size: 1.25em;
@@ -79,17 +88,22 @@ img, canvas {
 }
 
 .modal {
+  --bs-modal-header-padding: 1em;
+  --bs-modal-footer-padding: 1em;
   --bs-modal-margin: 2em;
   --bs-modal-border-width: 0;
   --bs-modal-header-border-width: 0;
+  --bs-modal-footer-border-width: 0;
   --bs-modal-border-radius: 0.375em;
+  color: #664620;
+  font-size: clamp(1rem, 0.5rem + 2vmin, 1.5rem);
+  text-align: center;
 }
 
-.modal-header {
-  padding: 0;
-}
-
-.modal .btn-close {
+.modal-header > button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
   padding: 0;
   margin: 0 0 0 auto;
   background: none;
@@ -98,7 +112,26 @@ img, canvas {
 }
 
 .modal-body {
-  padding: 2em 0.5em;
+  display: grid;
+  justify-items: center;
+  padding: 0.5em;
+}
+
+.modal-body .modal-title {
+  margin-bottom: 0.5em;
+  color: #ff603b;
+  font-size: 1.25em;
+  font-weight: 800;
+}
+
+.modal-body .modal-message {
+  margin-bottom: 0.25em;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.modal-body .btn {
+  margin-top: 2em;
 }
 
 /* GLOBAL - End */
@@ -131,7 +164,7 @@ h1 > img {
   margin-right: auto;
 }
 
-#input-wrapper {
+#input-form {
   position: fixed;
   width: min(30rem, 75vw);
   inset: 0;
@@ -139,11 +172,11 @@ h1 > img {
   display: grid;
   justify-items: center;
   align-content: center;
-  gap: 1em;
+  gap: 0.5em;
   font-size: clamp(1rem, 0.5rem + 2vmin, 1.5rem);
 }
 
-#input-wrapper .btn {
+#input-form .btn {
   margin-top: 0.5em;
   margin-left: auto;
   margin-right: -1.5em;
@@ -155,44 +188,14 @@ h1 > img {
   height: min(90vw, 50vh);
   top: 18vh;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+#wheel {
+  width: 100%;
+  flex-grow: 1;
   overflow: hidden;
-}
-
-#result-modal {
-  font-size: clamp(1rem, 0.5rem + 2vmin, 1.5rem);
-  color: #664620;
-}
-
-#result-modal .modal-header {
-  min-height: 2em;
-  justify-content: center;
-}
-
-#result-modal .btn-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-#result-modal .modal-body {
-  display: grid;
-  justify-items: center;
-}
-
-#result-modal .modal-title {
-  margin-bottom: 0.5em;
-  color: #ff603b;
-  text-align: center;
-  font-size: 1.25em;
-  font-weight: 800;
-}
-
-#result-modal .modal-message {
-  margin-bottom: 0.25em;
-  font-size: 2em;
-  font-weight: 600;
-}
-
-#result-modal .btn {
-  margin-top: 2em;
 }
