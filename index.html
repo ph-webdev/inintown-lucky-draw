@@ -23,11 +23,11 @@
 <h1><img src="./assets/images/title-banner.svg" alt="InInTown 新年大抽獎"></h1>
 
 <form action="javascript:void(0);" autocomplete="off" id="input-form">
-  <label for="input-name" class="form-label">請輸入你的名字</label>
-  <input type="text" required placeholder="名字" id="input-name" class="form-control">
-  <label for="input-phone" class="form-label">請輸入你的電話</label>
-  <input type="tel" required pattern="\d{8}" placeholder="########" id="input-phone" class="form-control">
-  <label for="input-division" class="form-label">請選擇你的分校</label>
+  <label for="input-name" class="form-label">名字</label>
+  <input type="text" required placeholder="請輸入你的名字" id="input-name" class="form-control">
+  <label for="input-phone" class="form-label">電話 <small>(八位數字)</small></label>
+  <input type="tel" required pattern="\d{8}" maxlength="8" placeholder="請輸入你的電話" id="input-phone" class="form-control">
+  <label for="input-division" class="form-label">分校</label>
   <select required id="input-division" class="form-select">
     <option value="" selected disabled>---</option>
     <option value="TK">TK</option>

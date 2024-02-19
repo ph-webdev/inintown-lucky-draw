@@ -32,6 +32,10 @@ img, canvas {
   max-width: 100%;
 }
 
+small {
+  font-size: 0.75em;
+}
+
 button {
   border: none;
   background: none;
@@ -51,6 +55,7 @@ button {
   height: 2.5em;
   padding-left: 1.5em;
   padding-right: 1.5em;
+  margin-bottom: 0.5em;
   border: none;
   border-radius: 0.375em;
   font-size: 1em;
